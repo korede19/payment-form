@@ -8,7 +8,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json()
-    const { name, email, paymentAmount } = body
+    const { name, email, paymentAmount, phone, services } = body
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
       line_items: [
@@ -39,6 +39,8 @@ export async function POST(request: NextRequest) {
       body: JSON.stringify({
         name,
         email,
+        phone,
+        services,
         amount: paymentAmount,
         status: 'Pending Payment',
         stripeSessionId: session.id,
