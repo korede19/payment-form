@@ -1,5 +1,4 @@
 'use client'
-
 import { useEffect, useState } from 'react'
 import { useSearchParams } from 'next/navigation'
 
@@ -9,7 +8,6 @@ export default function Success() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    // You could fetch session details here if needed
     setLoading(false)
   }, [sessionId])
 
