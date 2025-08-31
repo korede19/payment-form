@@ -9,8 +9,6 @@ export async function POST(request: NextRequest) {
   try {
     const body = await request.json()
     const { name, email, paymentAmount } = body
-
-    // 1. Create Stripe Checkout Session
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
       line_items: [
@@ -35,8 +33,6 @@ export async function POST(request: NextRequest) {
         formData: JSON.stringify(body),
       },
     })
-
-    // 2. Send data to Google Sheets via Apps Script
     await fetch(process.env.GOOGLE_APPS_SCRIPT_URL!, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -44,7 +40,7 @@ export async function POST(request: NextRequest) {
         name,
         email,
         amount: paymentAmount,
-        status: 'Pending Payment', // mark as pending until Stripe webhook confirms
+        status: 'Pending Payment',
         stripeSessionId: session.id,
         timestamp: new Date().toISOString(),
       }),

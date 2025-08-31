@@ -3,8 +3,6 @@ import { NextRequest, NextResponse } from 'next/server';
 export async function POST(request: NextRequest) {
   try {
     const formData = await request.json();
-
-    // Forward the data to Google Apps Script Web App
     const googleResponse = await fetch(process.env.GOOGLE_APPS_SCRIPT_URL!, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
