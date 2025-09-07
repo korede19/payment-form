@@ -20,11 +20,11 @@ const services = [
   'AI Strategy Consultation',
   'ChatGPT Training Workshop',
   'Custom AI Implementation',
-  'AI Ethics & Compliance',
-  'Machine Learning Basics',
+  'Agentic AI, Voice, Messaging and CRM',
+  'AI implementation in Marketing',
   'AI Tool Integration',
-  'Data Analysis Training',
-  'Automation Solutions'
+  'Short Video and story Telling with AI',
+  'Prompt Engineering'
 ]
 
 export default function IntakeForm() {
